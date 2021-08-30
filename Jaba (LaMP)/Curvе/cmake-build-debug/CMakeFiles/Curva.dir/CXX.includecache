@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/Curva/Curve.h
+math.h
+-
+
+D:/Curva/main.cpp
+iostream
+-
+Curve.h
+D:/Curva/Curve.h
+
