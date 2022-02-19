@@ -1,0 +1,14 @@
+github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/goftp/file-driver v0.0.0-20180502053751-5d604a0fc0c9 h1:cC0Hbb+18DJ4i6ybqDybvj4wdIDS4vnD0QEci98PgM8=
+github.com/goftp/file-driver v0.0.0-20180502053751-5d604a0fc0c9/go.mod h1:GpOj6zuVBG3Inr9qjEnuVTgBlk2lZ1S9DcoFiXWyKss=
+github.com/goftp/server v0.0.0-20200708154336-f64f7c2d8a42 h1:JdOp2qR5PF4O75tzHeqrwnDDv8oHDptWyTbyYS4fD8E=
+github.com/goftp/server v0.0.0-20200708154336-f64f7c2d8a42/go.mod h1:k/SS6VWkxY7dHPhoMQ8IdRu8L4lQtmGbhyXGg+vCnXE=
+github.com/jlaffaye/ftp v0.0.0-20210307004419-5d4190119067 h1:P2S26PMwXl8+ZGuOG3C69LG4be5vHafUayZm9VPw3tU=
+github.com/jlaffaye/ftp v0.0.0-20210307004419-5d4190119067/go.mod h1:2lmrmq866uF2tnje75wQHzmPXhmSWUt7Gyx2vgK1RCU=
+github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/skorobogatov/input v0.0.0-20130306234943-1101603a3b41 h1:b3EmC0TosIkZPA5tTaZn7xfeBqRrMBWgZTyYv8mhzhg=
+github.com/skorobogatov/input v0.0.0-20130306234943-1101603a3b41/go.mod h1:PN5WBrWYk4KR+cfihQTmzr0a1BMI9AIFZU8zRBNke2M=
+github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
+github.com/stretchr/testify v1.6.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
