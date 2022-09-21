@@ -1,0 +1,17 @@
+nonterminals = S, T, Q, R
+terminals = b, a, f
+Q -> b
+S -> f Q S Q a
+S -> a S a
+T -> a
+R -> a
+R -> b T
+T -> b R
+S -> b R
+Q -> b Q
+R -> f Q T R a
+R -> a T a
+T -> f Q T R a
+T -> a R a
+Q -> f Q S S a
+S -> a
