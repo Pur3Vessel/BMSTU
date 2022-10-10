@@ -1,9 +1,9 @@
 module Regex where
 import Data.List
 import qualified Data.Set as Set
+ 
 
-
-data Regex = Symbol Char | Alt [Regex] | Concat (Regex, Regex) | KStar Regex | Empty deriving (Eq, Show, Ord)
+data Regex = Symbol Char | Alt [Regex] | Concat (Regex, Regex) | KStar Regex | Epcilon | Empty deriving (Eq, Show, Ord)
 
 regexToString :: Regex -> String
 
@@ -13,11 +13,15 @@ regexToString (Symbol s) = [s]
 
 regexToString (KStar (Symbol s)) = s : "*"
 
+regexToString (KStar Epcilon) = "ɛ"
+
 regexToString (KStar reg) = '(' : regexToString reg ++ ")*"
 
 regexToString (Concat (r1, r2)) = regexToString r1 ++ regexToString r2
 
 regexToString (Alt regs) = intercalate "|" (map regexToString regs)
+
+regexToString Epcilon = "ɛ"
 
 
 reverseRegex :: Regex -> Regex
@@ -34,19 +38,24 @@ simplifyRegex :: Regex -> Regex
 
 simplifyRegex (KStar reg) = let simplified = simplifyRegex reg in case simplified of
     Empty -> Empty
-    Symbol 'ɛ' -> Symbol 'ɛ'
+    Epcilon -> Epcilon
     _ -> KStar simplified
 
 simplifyRegex (Concat (r1, r2)) = let simplified = (simplifyRegex r1, simplifyRegex r2) in case simplified of
     (Empty, _) -> Empty
     (_, Empty) -> Empty
-    (Symbol 'ɛ', rs2) -> rs2
-    (rs1, Symbol 'ɛ') -> rs1
+    (Epcilon, rs2) -> rs2
+    (rs1, Epcilon) -> rs1
     _ -> Concat simplified
 
-simplifyRegex (Alt regs) = Alt (Set.toList (Set.fromList changed)) where
-    changed = changeAlts filtered
-    filtered = filter (/= Empty) simplified
+
+
+simplifyRegex (Alt regs) = case changed of 
+    Alt [] -> Empty
+    _ -> changed
+    where
+    changed = Alt (Set.toList (Set.fromList filtered))
+    filtered = filter (/= Empty) (changeAlts simplified)
     simplified = map simplifyRegex regs
 
     changeAlts :: [Regex] -> [Regex]
@@ -62,11 +71,13 @@ delta (Alt regs) = Alt (map delta regs)
 
 delta (Concat (r1, r2)) = Concat (delta r1, delta r2)
 
-delta (KStar _) = Symbol 'ɛ'
+delta (KStar _) = Epcilon
 
-delta (Symbol s) = if s == 'ɛ' then Symbol s else Empty
+delta (Symbol s) = Empty
 
-delta Empty = Empty
+delta Epcilon = Epcilon
+
+delta reg = reg
 
 brzozowskiDerivative :: Char -> Regex -> Regex
 
@@ -76,18 +87,19 @@ brzozowskiDerivative sym (Concat (r1, r2)) = Alt [Concat (brzozowskiDerivative s
 
 brzozowskiDerivative sym (KStar reg) = Concat (brzozowskiDerivative sym reg, KStar reg)
 
-brzozowskiDerivative sym (Symbol s) = if s == sym then Symbol 'ɛ' else Empty
+brzozowskiDerivative sym (Symbol s) = if s == sym then Epcilon else Empty
 
-brzozowskiDerivative _ Empty = Empty
+brzozowskiDerivative _ reg = reg
+
 
 getAlphabet :: Regex -> String
 
 getAlphabet (Alt regs) = concatMap getAlphabet regs
-
-getAlphabet Empty = ""
 
 getAlphabet (Symbol s) = [s]
 
 getAlphabet (KStar reg) = getAlphabet reg
 
 getAlphabet (Concat (r1, r2)) = getAlphabet r1 ++ getAlphabet r2
+
+getAlphabet reg = ""

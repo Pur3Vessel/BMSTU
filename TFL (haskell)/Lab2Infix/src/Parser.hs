@@ -1,4 +1,3 @@
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 {-# OPTIONS_GHC -Wno-name-shadowing #-}
 
 module Parser where
@@ -15,7 +14,7 @@ parse :: String -> Regex
 parse s | checkBracketLevels ms = parseRegex ms | otherwise = error "Уровень скобок нарушен" where
     ms = replaceUnary (fillConcat (checkSymbols (trim (filter (/= ' ') s))))
     parseRegex :: String -> Regex
-    parseRegex [] =  Symbol 'ɛ'
+    parseRegex [] =  Epcilon
     parseRegex [s] = Symbol s
     parseRegex ('(' : reg) = if last reg == ')' then parseAlt (init reg) else parseAlt ('(' : reg)
     parseRegex reg = parseAlt reg
