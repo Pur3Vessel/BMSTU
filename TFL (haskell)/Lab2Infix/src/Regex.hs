@@ -1,8 +1,6 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-{-# OPTIONS_GHC -Wno-compat-unqualified-imports #-}
- {-# LANGUAGE UnicodeSyntax #-}
 module Regex where
-import Data.List
+import Data.List ( sortBy, intercalate )
 import qualified Data.Set as Set
  
 
@@ -22,14 +20,14 @@ regexToString (KStar reg) = '(' : regexToString reg ++ ")*"
 
 regexToString (Concat (r1, r2)) = regexToString r1 ++ regexToString r2
 
-regexToString (Alt regs) = intercalate "|" (map regexToString regs)
+regexToString (Alt regs) = "(" ++ intercalate "|" (map regexToString regs) ++ ")"
 
 regexToString Epsilon = "ɛ"
 
 
 reverseRegex :: Regex -> Regex
 
-reverseRegex (Alt regs) = Alt (map reverseRegex regs)
+reverseRegex (Alt regs) = Alt (sortBy (\x y -> compare (regexToString x) (regexToString y)) (map reverseRegex regs))
 
 reverseRegex (Concat (r1, r2)) = Concat (reverseRegex r2, reverseRegex r1)
 
@@ -58,7 +56,7 @@ simplifyRegex (Alt regs) = case changed of
     Alt [reg] -> reg
     _ -> changed
     where
-    changed = Alt (sort (Set.toList (Set.fromList filtered)))
+    changed = Alt (sortBy (\x y -> compare (regexToString x) (regexToString y)) (Set.toList (Set.fromList filtered)))
     filtered = filter (/= Empty) (changeAlts simplified)
     simplified = map simplifyRegex regs
 
@@ -79,35 +77,36 @@ delta (KStar _) = Epsilon
 
 delta (Symbol _) = Empty
 
-delta Epsilon = Epsilon
-
 delta reg = reg
 
 brzozowskiDerivative :: Char -> Regex -> Regex
 
-brzozowskiDerivative sym  = simplifyRegex . brzozowskiDerivativeHelp sym
+brzozowskiDerivative sym  = simplifyRegex . brzozowskiDerivativeHelp where
 
-brzozowskiDerivativeHelp :: Char -> Regex -> Regex
+    brzozowskiDerivativeHelp :: Regex -> Regex
 
-brzozowskiDerivativeHelp sym (Alt regs) = Alt (map (brzozowskiDerivativeHelp sym) regs)
+    brzozowskiDerivativeHelp (Alt regs) = Alt (map brzozowskiDerivativeHelp  regs)
 
-brzozowskiDerivativeHelp sym (Concat (r1, r2)) = Alt [Concat (brzozowskiDerivativeHelp sym r1, r2), Concat (delta r1, brzozowskiDerivativeHelp sym r2)]
+    brzozowskiDerivativeHelp (Concat (r1, r2)) = Alt [Concat (brzozowskiDerivativeHelp r1, r2), Concat (delta r1, brzozowskiDerivativeHelp r2)]
 
-brzozowskiDerivativeHelp sym (KStar reg) = Concat (brzozowskiDerivativeHelp sym reg, KStar reg)
+    brzozowskiDerivativeHelp (KStar reg) = Concat (brzozowskiDerivativeHelp reg, KStar reg)
 
-brzozowskiDerivativeHelp sym (Symbol s) = if s == sym then Epsilon else Empty
+    brzozowskiDerivativeHelp (Symbol s) = if s == sym then Epsilon else Empty
 
-brzozowskiDerivativeHelp _ reg = reg
-
+    brzozowskiDerivativeHelp reg = reg
 
 getAlphabet :: Regex -> String
 
-getAlphabet (Alt regs) = concatMap getAlphabet regs
+getAlphabet reg = Set.toList (Set.fromList (getAlphabetHelp reg)) where
 
-getAlphabet (Symbol s) = [s]
+    getAlphabetHelp :: Regex -> String
 
-getAlphabet (KStar reg) = getAlphabet reg
+    getAlphabetHelp (Alt regs) = concatMap getAlphabetHelp regs
 
-getAlphabet (Concat (r1, r2)) = getAlphabet r1 ++ getAlphabet r2
+    getAlphabetHelp (Symbol s) = [s]
 
-getAlphabet _ = ""
+    getAlphabetHelp (KStar re) = getAlphabetHelp re
+
+    getAlphabetHelp (Concat (r1, r2)) = getAlphabetHelp r1 ++ getAlphabetHelp r2
+
+    getAlphabetHelp _ = ""

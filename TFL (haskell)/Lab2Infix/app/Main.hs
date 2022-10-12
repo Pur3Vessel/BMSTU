@@ -1,19 +1,28 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# OPTIONS_GHC -Wno-name-shadowing #-}
-{-# OPTIONS_GHC -Wno-compat-unqualified-imports #-}
 module Main where
-
+-- Запуск из корневой директории с помощью команды stack exec Lab2Infix-exe
 import Parser (parse)
 import Regex
-import Data.List
+    ( Regex(Empty, Alt),
+      brzozowskiDerivative,
+      getAlphabet,
+      regexToString,
+      reverseRegex,
+      simplifyRegex )
+import Data.List ( intercalate, sort )
 import qualified Data.Set as Set
 
 
 
 brzozowskiAuto :: String -> [Regex] -> [Regex]
 
-brzozowskiAuto alphabet states = if length newStates > length states then brzozowskiAuto alphabet newStates  else filter (/= Empty) states where
+brzozowskiAuto alphabet states = if length newStates > length states then brzozowskiAuto alphabet newStates  else Set.toList (Set.fromList (disableAlts (filter (/= Empty) states))) where
     newStates = alphabetIteration states alphabet
+    disableAlts :: [Regex] -> [Regex]
+    disableAlts [] = []
+    disableAlts ((Alt regs) : xs) = regs ++ disableAlts xs
+    disableAlts (x : xs) = x : disableAlts xs
     alphabetIteration :: [Regex] -> String -> [Regex]
     alphabetIteration states [] = states
     alphabetIteration states (x : xs) = alphabetIteration newStates2 xs where
@@ -25,7 +34,7 @@ main = do
     filename <- getLine
     contents <- readFile ("tests/" ++ filename)
 
-    let regex = parse contents
+    let regex = simplifyRegex (parse contents)
     putStrLn ("Регулярка: " ++ regexToString regex)
     --print regex
 
@@ -33,10 +42,11 @@ main = do
     let brzozowski = brzozowskiAuto alphabet [regex]
     --print (map regexToString brzozowski)
 
+
     let reversedAnswers = Set.toList (Set.fromList (concatMap ((brzozowskiAuto alphabet . (: [])) . reverseRegex) brzozowski))
 
-    let answers = map (regexToString . reverseRegex) reversedAnswers
-    putStrLn ("->  " ++ intercalate "\n->  " answers)
+    let answers = sort (map (regexToString . reverseRegex) reversedAnswers)
+    putStrLn ("->  " ++ intercalate "\n->  " (filter (/= "ɛ") answers))
 
 
 

@@ -1,11 +1,10 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# OPTIONS_GHC -Wno-name-shadowing #-}
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-{-# OPTIONS_GHC -Wno-compat-unqualified-imports #-}
-
 module Parser where
-import Data.Char
-import Data.List
-import Regex
+import Data.Char ( isSpace, isLetter )
+import Data.List ( intercalate )
+import Regex (Regex(KStar, Epsilon, Symbol, Alt, Concat))
+
 
 trim :: [Char] -> [Char]
 trim = f . f where
@@ -18,7 +17,7 @@ parse s | checkBracketLevels ms = parseRegex ms | otherwise = error "Урове�
     parseRegex :: String -> Regex
     parseRegex [] =  Epsilon
     parseRegex [s] = Symbol s
-    parseRegex ('(' : reg) = if last reg == ')' then parseAlt (init reg) else parseAlt ('(' : reg)
+    parseRegex ('(' : reg) = if last reg == ')' && areBracketsConnected reg then parseAlt (init reg) else parseAlt ('(' : reg)
     parseRegex reg = parseAlt reg
 
     parseAlt :: String -> Regex
@@ -30,11 +29,19 @@ parse s | checkBracketLevels ms = parseRegex ms | otherwise = error "Урове�
         splitted = zeroLevelSplit reg '$'
 
     parseUnary :: String -> Regex
-    parseUnary reg | last reg == '+' = Concat (parseRegex (init reg), KStar (parseRegex (init reg))) 
+    parseUnary reg | last reg == '+' = Concat (parseRegex (init reg), KStar (parseRegex (init reg)))
                    | last reg == '*' = KStar (parseRegex (init reg))
                    | otherwise = parseRegex reg
 
 
+areBracketsConnected :: String ->  Bool
+areBracketsConnected s = iterate s 1 where
+    iterate :: String -> Int -> Bool
+    iterate [] level = level == 0
+    iterate (x : xs) level | x == '(' = iterate xs (level + 1)  
+                           | x == ')' = iterate xs (level - 1)  
+                           | level == 0 = False 
+                           | otherwise = iterate xs level
 
 
 checkBracketLevels :: String -> Bool
@@ -47,6 +54,7 @@ checkBracketLevels (x : xs) | x == '(' = findRight xs 0 | x == ')' = False | oth
                              | otherwise = findRight xs level
 
 fillConcat :: String -> String
+fillConcat [] = []
 fillConcat [x] = [x]
 fillConcat (x : xs) = if isLeft x && isRight (head xs) then x : '$' : fillConcat xs else x : fillConcat xs where
     isLeft x = isLetter x || elem x ")+*"
@@ -77,3 +85,20 @@ zeroLevelSplit s sym = take (splitIndex 0 0 s) s : zeroLevelSplit (drop (splitIn
                                   | x == '(' = splitIndex (level + 1) (acc + 1) xs
                                   | x == ')' = splitIndex (level - 1) (acc + 1) xs
                                   | otherwise = splitIndex level (acc + 1) xs
+
+
+
+
+
+{-
+Берут как-то раз интервью у мудреца, который живёт уже 103 года.
+Репортёр спрашивает
+-Мудрец, а как вы прожили так долго?
+А мудрец отвечает
+-Я никогда не спорил, поэтому так долго прожил.
+Репортёр, немного подумав, возразил
+-Это не правда!
+Мудрец ответил
+-Правда!
+И умер
+-}

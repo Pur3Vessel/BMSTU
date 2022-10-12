@@ -1,1 +1,1 @@
-( ( |a(b)*c|b)* | (ba)* )*
+a*|a|a|(ab)|ab|a(cc|d)*|a(cc|d)*
