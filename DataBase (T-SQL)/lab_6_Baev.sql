@@ -17,14 +17,18 @@ CREATE TABLE Parents (
     FirstName NVARCHAR(25) NOT NULL,
     LastName NVARCHAR(25) NOT NULL,
     MiddleName NVARCHAR(25) NULL,
+    Date_of_birth  DATE NOT NULL CHECK (Date_of_birth > CONVERT(DATE, '1920-01-01') AND Date_of_birth < CONVERT(DATE, '2002-01-01')),
     E_mail VARCHAR(50) UNIQUE NULL,
     Gender Bit NOT NULL DEFAULT 0,
+    Telephone Char(11) NOT NULL,
+    Address NVARCHAR(80) NOT NULL, 
+    Document_type INT NOT NUll CHECK (Document_type = 0 OR Document_type = 1) DEFAULT 0,
+    Document_ID Char(10) UNIQUE NOT NULL,
 );
 go
 -- В таблицу добавляется запись
-INSERT INTO Parents(FirstName, LastName, MiddleName, E_mail)
-VALUES (N'Валерий', N'Жмышенко', N'Альбертович', 'Zmishok@mail.ru'),
-        (N'Гриша', N'Йегер', NULL, 'a@yandex.ru')
+INSERT INTO Parents(FirstName, LastName, MiddleName, Date_of_birth, E_mail, Telephone, Address, Document_type,Document_ID)
+VALUES (N'Валерий', N'Жмышенко', N'Альбертович', '1968-01-01', 'Zmishok@mail.ru','88005553535', 'Pushkin street',1, '1234567890')
 GO
 
 SELECT * FROM Parents
@@ -43,16 +47,18 @@ CREATE TABLE Children (
     FirstName NVARCHAR(25) NOT NULL,
     LastName NVARCHAR(25) NOT NULL,
     MiddleName NVARCHAR(25) NULL,
+    Date_of_birth  DATE NOT NULL CHECK (Date_of_birth > CONVERT(DATE, '2010-01-01') AND Date_of_birth < CONVERT(DATE, '2022-01-01')),
     Gender Bit NOT NULL DEFAULT 0,
+    Document_type INT NOT NUll CHECK (Document_type = 0 OR Document_type = 1) DEFAULT 0,
+    Document_ID Char(10) UNIQUE NOT NULL,
+    Study_Group INT NOT NULL CHECK (Study_Group >= 0 AND Study_group <= 4) DEFAULT 0,
     Parent_ID int NULL,
     FOREIGN KEY (Parent_ID) REFERENCES Parents (Parent_ID)
 );
 GO
-INSERT INTO Children(FirstName, LastName, MiddleName, Parent_ID)
-VALUES (N'Денис', N'Жмышенко', N'Валерьевич', '1'),
-       (N'Богдан', N'Жмышенко', N'Валерьевич', '1'),
-       (N'Эрен', N'Йегер', NULL,  '2'),
-       (N'Микаса', N'Аккерман', NULL, '2')
+INSERT INTO Children(FirstName, LastName, MiddleName, Date_of_birth, Document_ID, Parent_ID)
+VALUES (N'Денис', N'Жмышенко', N'Валерьевич', '2015-09-09', '3232323232', '1'),
+       (N'Богдан', N'Жмышенко', N'Валерьевич', '2015-09-09', '1212121212', '1')
 SELECT * FROM Children
 GO
 -- Созданиние таблицы с первичным ключом на основе последовательности
@@ -83,12 +89,7 @@ go
 
 INSERT INTO Mentors(FirstName, LastName, MiddleName, Date_of_birth, Document_ID, Document_type,E_mail, Telephone, Address, Work_group)
 VALUES (N'Иггер', N'Егр', N'Егросович', '2000-09-09', '3232523232', '1', 'h@mail.ru', '88005553535', N'Africa', 0),
-       (N'Эрен', N'Йегер', NULL, '2000-09-09', '1212621213', '1', 'a@yandex.ru', '88005553535', N'Paradise', 1),
-       (N'Хэ', N'Йегер', NULL, '2000-09-09', '1212621214', '1', 'w@yandex.ru', '88005553535', N'Paradise', 1),
-       (N'Эрен', N'Йегер', NULL, '2000-09-09', '1212621215', '1', 'b@yandex.ru', '88005553535', N'Paradise', 1),
-       (N'Эрен', N'Йегер', NULL, '2000-09-09', '1212621216', '1', 'c@rambler.ru', '88005553535', N'Paradise', 1),
-       (N'Эрен', N'Йегер', NULL, '2000-09-09', '1212621217', '1', 'd@yandex.ru', '88005553535', N'Paradise', 1),
-       (N'Эрен', N'Йегер', NULL, '2000-09-09', '1212621218', '1', 'w@mail.ru', '88005553535', N'Paradise', 1)
+       (N'Эрен', N'Йегер', NULL, '2000-09-09', '1212621212', '1', 'h@yandex.ru', '88005553535', N'Paradise', 1)
 SELECT * FROM Mentors
 GO
 -- Тестирование действий для ограничений ссылочной целостности
@@ -106,3 +107,36 @@ GO
 INSERT INTO Classes(Date, Mentor_ID)
 VALUES ('03-03-2021', 1)
 GO 
+
+
+ALTER TABLE Children
+ADD CONSTRAINT Parent_ID
+FOREIGN KEY (Parent_ID)
+REFERENCES Parents (Parent_ID)
+ON DELETE CASCADE
+--ON DELETE SET NULL
+--ON DELETE SET DEFAULT
+GO
+
+ALTER TABLE Classes
+ADD CONSTRAINT Mentor_ID
+FOREIGN KEY (Mentor_ID)
+REFERENCES Mentors (Mentor_ID)
+ON UPDATE CASCADE
+--ON UPDATE SET NULL
+--ON UPDATE SET DEFAULT
+GO
+
+DELETE FROM Parents 
+WHERE Gender = 0
+GO
+
+SELECT * FROM Children
+GO
+
+UPDATE Mentors
+SET Mentor_ID = 2
+Where Mentor_ID = 1
+GO
+
+SELECT * FROM Classes

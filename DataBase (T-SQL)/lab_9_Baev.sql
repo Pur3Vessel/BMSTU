@@ -40,7 +40,6 @@ CREATE TABLE Parents (
     LastName NVARCHAR(25) NOT NULL,
     MiddleName NVARCHAR(25) NULL,
     E_mail VARCHAR(50) UNIQUE NOT NULL,
-    Gender Bit NOT NULL DEFAULT 0,
 );
 go
 
@@ -54,7 +53,6 @@ CREATE TABLE Children (
     FirstName NVARCHAR(25) NOT NULL,
     LastName NVARCHAR(25) NOT NULL,
     MiddleName NVARCHAR(25) NULL,
-    Gender Bit NOT NULL DEFAULT 0,
     Birth_certificate CHAR(10) unique NOT NULL,
     Parent_ID int unique NULL,
     FOREIGN KEY (Parent_ID) REFERENCES Parents (Parent_ID)
@@ -118,11 +116,14 @@ GO
 
 -- Пункт 2
 
-CREATE VIEW PC_View AS
+CREATE VIEW PC_View
+    AS
     SELECT p.FirstName as ParentName, p.LastName as ParentLastName, p.MiddleName as ParentMiddleName, p.E_mail as Email,
         c.FirstName as ChildName, c.LastName as ChildLastName, c.MiddleName as ChildMiddleName, c.Birth_certificate as Birth_certicicate
     FROM Parents as p INNER JOIN Children as c ON c.Parent_ID = p.Parent_ID
 GO
+
+
 
 SELECT * FROM PC_View
 GO
@@ -137,25 +138,16 @@ AS
     BEGIN
         if (EXISTS(SELECT Email, count(*) from inserted group by Email having count(*) > 1)) THROW 51000, N'Попытка вставить двух одинаковых родителей в одном запросе', 1
         if (EXISTS(SELECT Birth_certicicate, count(*) from inserted group by Birth_certicicate having count(*) > 1)) THROW 51000, N'Попытка вставить двух одинаковых детей в одном запросе', 1
+        if (EXISTS(SELECT E_mail from Parents join inserted on Parents.E_mail = inserted.Email)) if (EXISTS(SELECT Email from Parents inner join inserted on Parents.E_mail = inserted.Email)) THROW 51000, N'Попытка вставить существующего родителя', 1
+        if (EXISTS(SELECT Birth_certicicate from Children join inserted on Children.Birth_certificate = inserted.Birth_certicicate)) THROW 51000, N'Попытка вставить существующего ребенка', 1
 
         insert into Parents(FirstName, LastName, MiddleName, E_mail)
         SELECT ParentName, ParentLastName, ParentMiddleName, Email
         FROM inserted
 
-        declare @t table (
-            FN NVARCHAR(25),
-            LN NVARCHAR(25),
-            MN NVARCHAR(25),
-            BC CHAR(10),
-            PI int
-                         )
-        insert into @t(FN, LN,MN, BC, PI)
+        INSERT INTO Children(FirstName, LastName, MiddleName, Birth_certificate, Parent_ID)
         select i.ChildName, i.ChildLastName, i.ChildMiddleName, i.Birth_certicicate, p.Parent_ID
         from inserted as i join Parents as p on i.Email = p.E_mail
-
-        INSERT INTO Children(FirstName, LastName, MiddleName, Birth_certificate, Parent_ID)
-        select * from @t
-
     end
 go
 
@@ -193,6 +185,7 @@ create trigger Update_view
     INSTEAD OF update
 as
     begin
+        if update(Birth_certicicate) or update(Email) THROW 51000, N'Номер свидетельсва или маил менять нельзя', 1
         Update Children SET Children.FirstName = inserted.ChildName, Children.LastName = inserted.ChildLastName, Children.MiddleName = inserted.ChildMiddleName, Children.Birth_certificate = inserted.Birth_certicicate
                             from inserted where Children.Birth_certificate = inserted.Birth_certicicate
         Update Parents SET Parents.FirstName = inserted.ParentName, Parents.LastName = inserted.ParentLastName, Parents.MiddleName = inserted.ParentMiddleName, Parents.E_mail = inserted.Email
@@ -207,4 +200,3 @@ GO
 select *
 from Children
 go
-
