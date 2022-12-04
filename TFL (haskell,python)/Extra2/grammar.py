@@ -294,7 +294,6 @@ class Grammar:
                                     self.first_k[nonterm].add(candidate)
                                 else:
                                     candidates.add(candidate)
-                            break
                         if isinstance(right, Nterm):
                             candidates_copy = deepcopy(candidates)
                             for candidate in candidates_copy:
@@ -312,6 +311,7 @@ class Grammar:
                                         candidates.add(other_candidate)
                         if len(candidates) == 0:
                             break
+                    candidates.discard('')
                     self.first_k[nonterm] = self.first_k[nonterm].union(candidates)
                 new_power = len(self.first_k[nonterm])
                 if new_power != power:
