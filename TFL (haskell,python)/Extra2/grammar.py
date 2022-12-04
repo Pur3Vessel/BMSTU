@@ -260,7 +260,7 @@ class Grammar:
                                 if isinstance(next_symbol, Term):
                                     self.follow[right].add(next_symbol)
                                     break
-                                else:
+                                if isinstance(next_symbol, Nterm):
                                     self.follow[right] = self.follow[right].union(self.first[next_symbol]).difference({Epsilon()})
                                     if next_symbol not in self.epsilon_generators:
                                         break
@@ -269,6 +269,7 @@ class Grammar:
                             changed = True
 
     def make_first_k(self, k):
+        assert k > 0
         self.k = k
         self.first_k = {}
         for nonterm in self.nonterminals:
@@ -282,14 +283,36 @@ class Grammar:
                     self.first_k[nonterm].add(Epsilon())
                 n_rules = set(filter(lambda x: x.left == nonterm, self.rules))
                 for rule in n_rules:
+                    candidates = {''}
                     for right in rule.rights:
                         if isinstance(right, Term):
-                            self.first_k[nonterm].add(right)
+                            candidates_copy = deepcopy(candidates)
+                            for candidate in candidates_copy:
+                                candidates.discard(candidate)
+                                candidate += str(right)
+                                if len(candidate) == k:
+                                    self.first_k[nonterm].add(candidate)
+                                else:
+                                    candidates.add(candidate)
                             break
                         if isinstance(right, Nterm):
-                            self.first_k[nonterm] = self.first_k[nonterm].union(self.first_k[right])
-                            if right not in self.epsilon_generators:
-                                break
+                            candidates_copy = deepcopy(candidates)
+                            for candidate in candidates_copy:
+                                if right not in self.epsilon_generators:
+                                    candidates.discard(candidate)
+                                for s in self.first_k[right]:
+                                    if isinstance(s, Epsilon):
+                                        continue
+                                    other_candidate = candidate + str(s)
+                                    if len(other_candidate) == k:
+                                        self.first_k[nonterm].add(other_candidate)
+                                    elif len(other_candidate) > k:
+                                        self.first_k[nonterm].add(other_candidate[:k])
+                                    else:
+                                        candidates.add(other_candidate)
+                        if len(candidates) == 0:
+                            break
+                    self.first_k[nonterm] = self.first_k[nonterm].union(candidates)
                 new_power = len(self.first_k[nonterm])
                 if new_power != power:
                     changed = True

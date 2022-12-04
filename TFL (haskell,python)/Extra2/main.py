@@ -1,5 +1,10 @@
 import os
 from parser import Parser
+# Ограничения:
+# 1) Грамматика должна быть КС
+# 2) Нетерминалы должны быть заглавными латинскими буквами
+# 3) Терминалы должны быть строчными латинскими буквами
+# 4) Первый встреченный нетерминал считается стартовым
 
 if __name__ == "__main__":
     filepath = os.path.join('tests', 'test2.txt')
@@ -14,3 +19,5 @@ if __name__ == "__main__":
     gram.make_follow()
     gram.print_first()
     gram.print_follow()
+    gram.make_first_k(2)
+    gram.print_first_k()
