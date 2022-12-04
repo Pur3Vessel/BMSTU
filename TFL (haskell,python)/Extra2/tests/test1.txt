@@ -1,0 +1,8 @@
+E -> TA
+A -> aTA
+A -> ε
+T -> FB
+B -> bFB
+B -> ε
+F -> c
+F -> dEe
