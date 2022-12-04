@@ -299,7 +299,8 @@ class Grammar:
                             for candidate in candidates_copy:
                                 if right not in self.epsilon_generators:
                                     candidates.discard(candidate)
-                                for s in self.first_k[right]:
+                                copy = deepcopy(self.first_k[right])
+                                for s in copy:
                                     if isinstance(s, Epsilon):
                                         continue
                                     other_candidate = candidate + str(s)
