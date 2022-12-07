@@ -1,5 +1,6 @@
 import threading
 from time import sleep
+from random import random
 
 n = 10
 s = []
@@ -26,10 +27,9 @@ class MyThread(threading.Thread):
                     sleep(1)
                 else:
                     lock.acquire()
-                    lock.acquire()
+                    if random() < 0.6:
+                        q = 1 / 0
                     t = s.pop()
-                    lock.release()
-                    lock.acquire()
                     r.append(t * t)
                     lock.release()
             print('B finish')
@@ -41,19 +41,18 @@ class MyThread(threading.Thread):
                 else:
                     lock.acquire()
                     t = s.pop()
-                    lock.release()
-                    lock.acquire()
                     r.append(t / 3)
                     lock.release()
             print('C finish')
         if self.name == 'D':
             print('D start')
             for i in range(n):
+                lock.acquire()
                 if len(r) == 0:
                     print('In R there are not elements')
+                    lock.release()
                     sleep(1)
                 else:
-                    lock.acquire()
                     print(r.pop())
                     lock.release()
             print('D finish')
