@@ -5,6 +5,7 @@ n = 10
 s = []
 r = []
 lock = threading.Lock()
+lock1 = threading.Lock()
 
 class MyThread(threading.Thread):
     def __init__(self, name):
@@ -26,11 +27,12 @@ class MyThread(threading.Thread):
                     sleep(1)
                 else:
                     lock.acquire()
-                    lock.acquire()
+                    sleep(0.5)
+                    lock1.acquire()
                     t = s.pop()
-                    lock.release()
-                    lock.acquire()
                     r.append(t * t)
+                    lock1.release()
+                    sleep(0.5)
                     lock.release()
             print('B finish')
         if self.name == 'C':
@@ -39,12 +41,14 @@ class MyThread(threading.Thread):
                 if len(s) == 0:
                     sleep(1)
                 else:
+                    lock1.acquire()
+                    sleep(0.5)
                     lock.acquire()
                     t = s.pop()
-                    lock.release()
-                    lock.acquire()
                     r.append(t / 3)
                     lock.release()
+                    sleep(0.5)
+                    lock1.release()
             print('C finish')
         if self.name == 'D':
             print('D start')
@@ -53,9 +57,9 @@ class MyThread(threading.Thread):
                     print('In R there are not elements')
                     sleep(1)
                 else:
-                    lock.acquire()
+                    lock1.acquire()
                     print(r.pop())
-                    lock.release()
+                    lock1.release()
             print('D finish')
 
 
