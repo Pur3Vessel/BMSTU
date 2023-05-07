@@ -1,0 +1,4 @@
+ex   'boom' a1.3.4  @@@@@@@@@@@@@@@@@@@@@@
+-35.12 !!!!!!!!!!    34
+222
+'he said: ''boom'', and the ground explodes'
