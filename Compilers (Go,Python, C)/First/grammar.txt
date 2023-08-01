@@ -1,0 +1,5 @@
+GRAMMAR -> TOKENS RULE+ END
+TOKENS -> 'tokens' NAME (',' NAME)* '.'
+RULE -> NAME 'is' TREE? '.'
+TREE -> TREE_NODE+
+TREE_NODE -> 'repeat' '(' TREE ')' | 'alt' '(' TREE? ',' TREE? (',' TREE?)* ')' | NAME

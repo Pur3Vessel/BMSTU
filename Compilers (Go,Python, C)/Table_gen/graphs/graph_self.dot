@@ -1,0 +1,345 @@
+digraph {
+118 [label = "GRAMMAR"]
+118 -> 119
+118 -> 120
+118 -> 121
+119 [label = "BLOCK"]
+119 -> 122
+119 -> 123
+119 -> 124
+122 [label = "TOKENS"]
+122 -> 125
+122 -> 126
+122 -> 127
+125 [label = "tokens"]
+126 [label = "<name>"]
+127 [label = "TERMS"]
+127 -> 128
+127 -> 129
+127 -> 130
+128 [label = "COMMA"]
+129 [label = "<dot>"]
+130 [label = "TERMS"]
+130 -> 131
+130 -> 132
+130 -> 133
+131 [label = "COMMA"]
+132 [label = "<comma>"]
+133 [label = "TERMS"]
+133 -> 134
+133 -> 135
+133 -> 136
+134 [label = "COMMA"]
+135 [label = "<start>"]
+136 [label = "TERMS"]
+136 -> 137
+136 -> 138
+136 -> 139
+137 [label = "COMMA"]
+138 [label = "<is>"]
+139 [label = "TERMS"]
+139 -> 140
+139 -> 141
+139 -> 142
+140 [label = "COMMA"]
+141 [label = "<tokens>"]
+142 [label = "TERMS"]
+142 -> 143
+143 [label = "DOT"]
+123 [label = "RULE"]
+123 -> 144
+123 -> 145
+123 -> 146
+123 -> 147
+144 [label = "<GRAMMAR>"]
+145 [label = "IS"]
+146 [label = "NAMES"]
+146 -> 148
+146 -> 149
+148 [label = "<BLOCK>"]
+149 [label = "NAMES"]
+149 -> 150
+149 -> 151
+150 [label = "<BLOCKS>"]
+151 [label = "NAMES"]
+151 -> 152
+151 -> 153
+152 [label = "<AXIOM>"]
+153 [label = "NAMES"]
+153 -> 154
+154 [label = "epsilon"]
+147 [label = "DOT"]
+124 [label = "RULES"]
+124 -> 155
+124 -> 156
+155 [label = "RULE"]
+155 -> 157
+155 -> 158
+155 -> 159
+155 -> 160
+157 [label = "<BLOCKS>"]
+158 [label = "IS"]
+159 [label = "NAMES"]
+159 -> 161
+159 -> 162
+161 [label = "<BLOCK>"]
+162 [label = "NAMES"]
+162 -> 163
+162 -> 164
+163 [label = "<BLOCKS>"]
+164 [label = "NAMES"]
+164 -> 165
+165 [label = "epsilon"]
+160 [label = "DOT"]
+156 [label = "RULES"]
+156 -> 166
+156 -> 167
+166 [label = "RULE"]
+166 -> 168
+166 -> 169
+166 -> 170
+166 -> 171
+168 [label = "<BLOCKS>"]
+169 [label = "IS"]
+170 [label = "NAMES"]
+170 -> 172
+172 [label = "epsilon"]
+171 [label = "DOT"]
+167 [label = "RULES"]
+167 -> 173
+167 -> 174
+173 [label = "RULE"]
+173 -> 175
+173 -> 176
+173 -> 177
+173 -> 178
+175 [label = "<BLOCK>"]
+176 [label = "IS"]
+177 [label = "NAMES"]
+177 -> 179
+177 -> 180
+179 [label = "<TOKENS>"]
+180 [label = "NAMES"]
+180 -> 181
+180 -> 182
+181 [label = "<RULE>"]
+182 [label = "NAMES"]
+182 -> 183
+182 -> 184
+183 [label = "<RULES>"]
+184 [label = "NAMES"]
+184 -> 185
+185 [label = "epsilon"]
+178 [label = "DOT"]
+174 [label = "RULES"]
+174 -> 186
+174 -> 187
+186 [label = "RULE"]
+186 -> 188
+186 -> 189
+186 -> 190
+186 -> 191
+188 [label = "<TOKENS>"]
+189 [label = "IS"]
+190 [label = "NAMES"]
+190 -> 192
+190 -> 193
+192 [label = "<tokens>"]
+193 [label = "NAMES"]
+193 -> 194
+193 -> 195
+194 [label = "<name>"]
+195 [label = "NAMES"]
+195 -> 196
+195 -> 197
+196 [label = "<TERMS>"]
+197 [label = "NAMES"]
+197 -> 198
+198 [label = "epsilon"]
+191 [label = "DOT"]
+187 [label = "RULES"]
+187 -> 199
+187 -> 200
+199 [label = "RULE"]
+199 -> 201
+199 -> 202
+199 -> 203
+199 -> 204
+201 [label = "<TERMS>"]
+202 [label = "IS"]
+203 [label = "NAMES"]
+203 -> 205
+203 -> 206
+205 [label = "<comma>"]
+206 [label = "NAMES"]
+206 -> 207
+206 -> 208
+207 [label = "<name>"]
+208 [label = "NAMES"]
+208 -> 209
+208 -> 210
+209 [label = "<TERMS>"]
+210 [label = "NAMES"]
+210 -> 211
+211 [label = "epsilon"]
+204 [label = "DOT"]
+200 [label = "RULES"]
+200 -> 212
+200 -> 213
+212 [label = "RULE"]
+212 -> 214
+212 -> 215
+212 -> 216
+212 -> 217
+214 [label = "<TERMS>"]
+215 [label = "IS"]
+216 [label = "NAMES"]
+216 -> 218
+216 -> 219
+218 [label = "<dot>"]
+219 [label = "NAMES"]
+219 -> 220
+220 [label = "epsilon"]
+217 [label = "DOT"]
+213 [label = "RULES"]
+213 -> 221
+213 -> 222
+221 [label = "RULE"]
+221 -> 223
+221 -> 224
+221 -> 225
+221 -> 226
+223 [label = "<RULES>"]
+224 [label = "IS"]
+225 [label = "NAMES"]
+225 -> 227
+225 -> 228
+227 [label = "<RULE>"]
+228 [label = "NAMES"]
+228 -> 229
+228 -> 230
+229 [label = "<RULES>"]
+230 [label = "NAMES"]
+230 -> 231
+231 [label = "epsilon"]
+226 [label = "DOT"]
+222 [label = "RULES"]
+222 -> 232
+222 -> 233
+232 [label = "RULE"]
+232 -> 234
+232 -> 235
+232 -> 236
+232 -> 237
+234 [label = "<RULES>"]
+235 [label = "IS"]
+236 [label = "NAMES"]
+236 -> 238
+238 [label = "epsilon"]
+237 [label = "DOT"]
+233 [label = "RULES"]
+233 -> 239
+233 -> 240
+239 [label = "RULE"]
+239 -> 241
+239 -> 242
+239 -> 243
+239 -> 244
+241 [label = "<RULE>"]
+242 [label = "IS"]
+243 [label = "NAMES"]
+243 -> 245
+243 -> 246
+245 [label = "<name>"]
+246 [label = "NAMES"]
+246 -> 247
+246 -> 248
+247 [label = "<is>"]
+248 [label = "NAMES"]
+248 -> 249
+248 -> 250
+249 [label = "<NAMES>"]
+250 [label = "NAMES"]
+250 -> 251
+250 -> 252
+251 [label = "<dot>"]
+252 [label = "NAMES"]
+252 -> 253
+253 [label = "epsilon"]
+244 [label = "DOT"]
+240 [label = "RULES"]
+240 -> 254
+240 -> 255
+254 [label = "RULE"]
+254 -> 256
+254 -> 257
+254 -> 258
+254 -> 259
+256 [label = "<NAMES>"]
+257 [label = "IS"]
+258 [label = "NAMES"]
+258 -> 260
+258 -> 261
+260 [label = "<name>"]
+261 [label = "NAMES"]
+261 -> 262
+261 -> 263
+262 [label = "<NAMES>"]
+263 [label = "NAMES"]
+263 -> 264
+264 [label = "epsilon"]
+259 [label = "DOT"]
+255 [label = "RULES"]
+255 -> 265
+255 -> 266
+265 [label = "RULE"]
+265 -> 267
+265 -> 268
+265 -> 269
+265 -> 270
+267 [label = "<NAMES>"]
+268 [label = "IS"]
+269 [label = "NAMES"]
+269 -> 271
+271 [label = "epsilon"]
+270 [label = "DOT"]
+266 [label = "RULES"]
+266 -> 272
+266 -> 273
+272 [label = "RULE"]
+272 -> 274
+272 -> 275
+272 -> 276
+272 -> 277
+274 [label = "<AXIOM>"]
+275 [label = "IS"]
+276 [label = "NAMES"]
+276 -> 278
+276 -> 279
+278 [label = "<start>"]
+279 [label = "NAMES"]
+279 -> 280
+279 -> 281
+280 [label = "<name>"]
+281 [label = "NAMES"]
+281 -> 282
+281 -> 283
+282 [label = "<dot>"]
+283 [label = "NAMES"]
+283 -> 284
+284 [label = "epsilon"]
+277 [label = "DOT"]
+273 [label = "RULES"]
+273 -> 285
+285 [label = "epsilon"]
+120 [label = "BLOCKS"]
+120 -> 286
+286 [label = "epsilon"]
+121 [label = "AXIOM"]
+121 -> 287
+121 -> 288
+121 -> 289
+287 [label = "START"]
+288 [label = "<GRAMMAR>"]
+289 [label = "DOT"]
+}

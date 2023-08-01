@@ -1,0 +1,16 @@
+tokens <plus>, <minus>,
+       <star>, <slash>,
+       <lparen>, <rparen>, <n>.
+<E> is alt(<T> repeat(
+             alt(<plus>, <minus>)
+             <T>
+           ), ).
+<T> is <F> repeat(
+             alt(<star>, <slash>)
+             <F>
+           ).
+<F> is alt(
+         <n>,
+         <minus> <F>,
+         <lparen> <E> <rparen>
+       ).

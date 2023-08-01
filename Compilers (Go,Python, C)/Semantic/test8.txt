@@ -1,0 +1,25 @@
+-- Объединение двух списков
+zip(xs : [int], ys : [int]) : [(int, int)] =
+  if null(car(xs)) or null(ys) then []
+  else cons((car(xs), car(ys)), zip(cdr(xs), cdr(ys)));
+
+-- Декартово произведение
+cart_prod(xs : [int], ys : [int]) : [(int, int)] =
+  if null(xs) then [] else append(bind(car(xs), ys), cart_prod(cdr(xs), ys));
+
+bind(x : int, ys : [int]) : [(int, int)] =
+  if null(ys) then [] else cons((x, car(ys)), bind(x, cdr(ys)));
+
+-- Конкатенация списков пар
+append(xs : [(int, int)], ys : [(int, int)]) : [(int, int)] =
+  if null(xs) then ys else cons(car(xs), append(cdr(xs), ys));
+
+-- Сумма элементов списка
+sum(xs : [int]) : int = if null(xs) then 0 else car(xs) + sum(cdr(xs));
+
+-- Вычисление полинома по схеме Горнера
+polynom(x : int, coefs : [int]) : int =
+  if null(coefs) then 0 else polynom(x, cdr(coefs)) * x + car(coefs);
+
+-- Вычисление полинома x³+x²+x+1
+polynom1111(x : int) : int = polynom(x, [1, 1, 1, 1]);

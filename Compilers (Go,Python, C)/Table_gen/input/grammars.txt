@@ -1,0 +1,28 @@
+tokens <plus sign>, <star>, <n>.
+<E>   is <T> <E 1>.
+<E 1> is <plus sign> <T> <E 1>.
+<E 1> is .
+<T>   is <F> <T 1>.
+<T 1> is <star> <F> <T 1>.
+<T 1> is .
+<F>  is <n>.
+tokens <left paren>, <right paren>.
+<F>   is <left paren> <E> <right paren>.
+start <E>.
+
+
+tokens <name>, <dot>, <comma>, <start>, <is>, <tokens>.
+<GRAMMAR> is <BLOCK> <BLOCKS> <AXIOM>.
+<BLOCKS> is <BLOCK> <BLOCKS>.
+<BLOCKS> is .
+<BLOCK> is <TOKENS> <RULE> <RULES>.
+<TOKENS> is <tokens> <name> <TERMS>.
+<TERMS> is <comma> <name> <TERMS>.
+<TERMS> is <dot>.
+<RULES> is <RULE> <RULES>.
+<RULES> is.
+<RULE> is <name> <is> <NAMES> <dot>.
+<NAMES> is <name> <NAMES>.
+<NAMES> is .
+<AXIOM> is <start> <name> <dot>.
+start <GRAMMAR>.

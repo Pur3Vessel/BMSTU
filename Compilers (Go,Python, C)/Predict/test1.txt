@@ -1,0 +1,11 @@
+tokens <plus sign>, <star>, <n>.
+<E>   is <T> <E 1>.
+<E 1> is <plus sign> <T> <E 1>.
+<E 1> is .
+<T>   is <F> <T 1>.
+<T 1> is <star> <F> <T 1>.
+<T 1> is .
+<F>   is <n>.
+tokens <left paren>, <right paren>.
+<F>   is <left paren> <E> <right paren>.
+start <E>.

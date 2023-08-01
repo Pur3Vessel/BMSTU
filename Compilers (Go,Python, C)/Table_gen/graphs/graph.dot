@@ -1,0 +1,231 @@
+digraph {
+2 [label = "GRAMMAR"]
+2 -> 3
+2 -> 4
+2 -> 5
+3 [label = "BLOCK"]
+3 -> 6
+3 -> 7
+3 -> 8
+6 [label = "TOKENS"]
+6 -> 9
+6 -> 10
+6 -> 11
+9 [label = "tokens"]
+10 [label = "<plus sign>"]
+11 [label = "TERMS"]
+11 -> 12
+11 -> 13
+11 -> 14
+12 [label = "COMMA"]
+13 [label = "<star>"]
+14 [label = "TERMS"]
+14 -> 15
+14 -> 16
+14 -> 17
+15 [label = "COMMA"]
+16 [label = "<n>"]
+17 [label = "TERMS"]
+17 -> 18
+18 [label = "DOT"]
+7 [label = "RULE"]
+7 -> 19
+7 -> 20
+7 -> 21
+7 -> 22
+19 [label = "<E>"]
+20 [label = "IS"]
+21 [label = "NAMES"]
+21 -> 23
+21 -> 24
+23 [label = "<T>"]
+24 [label = "NAMES"]
+24 -> 25
+24 -> 26
+25 [label = "<E 1>"]
+26 [label = "NAMES"]
+26 -> 27
+27 [label = "epsilon"]
+22 [label = "DOT"]
+8 [label = "RULES"]
+8 -> 28
+8 -> 29
+28 [label = "RULE"]
+28 -> 30
+28 -> 31
+28 -> 32
+28 -> 33
+30 [label = "<E 1>"]
+31 [label = "IS"]
+32 [label = "NAMES"]
+32 -> 34
+32 -> 35
+34 [label = "<plus sign>"]
+35 [label = "NAMES"]
+35 -> 36
+35 -> 37
+36 [label = "<T>"]
+37 [label = "NAMES"]
+37 -> 38
+37 -> 39
+38 [label = "<E 1>"]
+39 [label = "NAMES"]
+39 -> 40
+40 [label = "epsilon"]
+33 [label = "DOT"]
+29 [label = "RULES"]
+29 -> 41
+29 -> 42
+41 [label = "RULE"]
+41 -> 43
+41 -> 44
+41 -> 45
+41 -> 46
+43 [label = "<E 1>"]
+44 [label = "IS"]
+45 [label = "NAMES"]
+45 -> 47
+47 [label = "epsilon"]
+46 [label = "DOT"]
+42 [label = "RULES"]
+42 -> 48
+42 -> 49
+48 [label = "RULE"]
+48 -> 50
+48 -> 51
+48 -> 52
+48 -> 53
+50 [label = "<T>"]
+51 [label = "IS"]
+52 [label = "NAMES"]
+52 -> 54
+52 -> 55
+54 [label = "<F>"]
+55 [label = "NAMES"]
+55 -> 56
+55 -> 57
+56 [label = "<T 1>"]
+57 [label = "NAMES"]
+57 -> 58
+58 [label = "epsilon"]
+53 [label = "DOT"]
+49 [label = "RULES"]
+49 -> 59
+49 -> 60
+59 [label = "RULE"]
+59 -> 61
+59 -> 62
+59 -> 63
+59 -> 64
+61 [label = "<T 1>"]
+62 [label = "IS"]
+63 [label = "NAMES"]
+63 -> 65
+63 -> 66
+65 [label = "<star>"]
+66 [label = "NAMES"]
+66 -> 67
+66 -> 68
+67 [label = "<F>"]
+68 [label = "NAMES"]
+68 -> 69
+68 -> 70
+69 [label = "<T 1>"]
+70 [label = "NAMES"]
+70 -> 71
+71 [label = "epsilon"]
+64 [label = "DOT"]
+60 [label = "RULES"]
+60 -> 72
+60 -> 73
+72 [label = "RULE"]
+72 -> 74
+72 -> 75
+72 -> 76
+72 -> 77
+74 [label = "<T 1>"]
+75 [label = "IS"]
+76 [label = "NAMES"]
+76 -> 78
+78 [label = "epsilon"]
+77 [label = "DOT"]
+73 [label = "RULES"]
+73 -> 79
+73 -> 80
+79 [label = "RULE"]
+79 -> 81
+79 -> 82
+79 -> 83
+79 -> 84
+81 [label = "<F>"]
+82 [label = "IS"]
+83 [label = "NAMES"]
+83 -> 85
+83 -> 86
+85 [label = "<n>"]
+86 [label = "NAMES"]
+86 -> 87
+87 [label = "epsilon"]
+84 [label = "DOT"]
+80 [label = "RULES"]
+80 -> 88
+88 [label = "epsilon"]
+4 [label = "BLOCKS"]
+4 -> 89
+4 -> 90
+89 [label = "BLOCK"]
+89 -> 91
+89 -> 92
+89 -> 93
+91 [label = "TOKENS"]
+91 -> 94
+91 -> 95
+91 -> 96
+94 [label = "tokens"]
+95 [label = "<left paren>"]
+96 [label = "TERMS"]
+96 -> 97
+96 -> 98
+96 -> 99
+97 [label = "COMMA"]
+98 [label = "<right paren>"]
+99 [label = "TERMS"]
+99 -> 100
+100 [label = "DOT"]
+92 [label = "RULE"]
+92 -> 101
+92 -> 102
+92 -> 103
+92 -> 104
+101 [label = "<F>"]
+102 [label = "IS"]
+103 [label = "NAMES"]
+103 -> 105
+103 -> 106
+105 [label = "<left paren>"]
+106 [label = "NAMES"]
+106 -> 107
+106 -> 108
+107 [label = "<E>"]
+108 [label = "NAMES"]
+108 -> 109
+108 -> 110
+109 [label = "<right paren>"]
+110 [label = "NAMES"]
+110 -> 111
+111 [label = "epsilon"]
+104 [label = "DOT"]
+93 [label = "RULES"]
+93 -> 112
+112 [label = "epsilon"]
+90 [label = "BLOCKS"]
+90 -> 113
+113 [label = "epsilon"]
+5 [label = "AXIOM"]
+5 -> 114
+5 -> 115
+5 -> 116
+114 [label = "START"]
+115 [label = "<E>"]
+116 [label = "DOT"]
+}
