@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e3c1a89d-6039-4878-b208-f7801f94eac6" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2VFZnUbn8p7dQ2IG7pIwr1wjNsV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/p3v/Projects/SSA&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Fly1" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Lab9" />
+      <recent name="$PROJECT_DIR$/Lab8" />
+      <recent name="$PROJECT_DIR$/Rk1" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Fly2" />
+      <recent name="$PROJECT_DIR$/Lab8/latex/images" />
+      <recent name="$PROJECT_DIR$/Lab3/latex" />
+      <recent name="$PROJECT_DIR$/Lab2/latex/images" />
+      <recent name="$PROJECT_DIR$/Lab3" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e3c1a89d-6039-4878-b208-f7801f94eac6" name="Changes" comment="" />
+      <created>1694433955982</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694433955982</updated>
+      <workItem from="1694433957172" duration="369000" />
+      <workItem from="1694513201634" duration="10107000" />
+      <workItem from="1694597745880" duration="17000" />
+      <workItem from="1694689180409" duration="6915000" />
+      <workItem from="1695034917661" duration="1267000" />
+      <workItem from="1695065552588" duration="4096000" />
+      <workItem from="1695121002823" duration="12239000" />
+      <workItem from="1695144891817" duration="3080000" />
+      <workItem from="1695660601550" duration="12000" />
+      <workItem from="1695732545237" duration="372000" />
+      <workItem from="1695840466363" duration="15000" />
+      <workItem from="1695890590871" duration="5735000" />
+      <workItem from="1695909586088" duration="1100000" />
+      <workItem from="1696169279682" duration="9201000" />
+      <workItem from="1696251476540" duration="1909000" />
+      <workItem from="1696275686817" duration="5320000" />
+      <workItem from="1696332919007" duration="1810000" />
+      <workItem from="1696341838479" duration="1186000" />
+      <workItem from="1696507429834" duration="2050000" />
+      <workItem from="1696522204402" duration="3092000" />
+      <workItem from="1696780096236" duration="37000" />
+      <workItem from="1696875595380" duration="5001000" />
+      <workItem from="1698134287233" duration="7319000" />
+      <workItem from="1698150215781" duration="4978000" />
+      <workItem from="1698513957242" duration="1517000" />
+      <workItem from="1698670297678" duration="599000" />
+      <workItem from="1698692696968" duration="4600000" />
+      <workItem from="1698749412444" duration="8495000" />
+      <workItem from="1698758192530" duration="908000" />
+      <workItem from="1698911204625" duration="20000" />
+      <workItem from="1699464151472" duration="2817000" />
+      <workItem from="1699514906364" duration="1641000" />
+      <workItem from="1699539377579" duration="2834000" />
+      <workItem from="1699791983571" duration="10000" />
+      <workItem from="1699962947156" duration="2994000" />
+      <workItem from="1700391174543" duration="15000" />
+      <workItem from="1701172784474" duration="2719000" />
+      <workItem from="1701714512989" duration="3104000" />
+      <workItem from="1701771825795" duration="7472000" />
+      <workItem from="1701800734520" duration="663000" />
+      <workItem from="1702317481869" duration="4781000" />
+      <workItem from="1702375756496" duration="8705000" />
+      <workItem from="1702389192964" duration="208000" />
+      <workItem from="1702404964013" duration="1321000" />
+      <workItem from="1702497228242" duration="2504000" />
+      <workItem from="1702842911410" duration="19000" />
+      <workItem from="1705508746843" duration="4340000" />
+      <workItem from="1705573187638" duration="3679000" />
+      <workItem from="1705837040482" duration="11000" />
+      <workItem from="1707821094215" duration="100000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

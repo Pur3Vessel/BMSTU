@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name = "white">#ffffff</color>
+    <color name="colorPrimaryDark">#cccccc</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name = "actionButton">#808080</color>
+    <color name = "equalButton">#FF0000</color>
+    <color name="numberActionButton">#000000</color>
+    <color name = "numberActionButton2">#373737</color>
+</resources>

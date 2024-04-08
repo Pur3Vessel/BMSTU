@@ -1,0 +1,20 @@
+fnewmtl mat_hair_ad272ef9-0189-4421-8c81-cf3144d74ab8
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd rubyHair_diff.jpg
+newmtl mat_ruby_34253241-6ae7-4355-8f93-e3defa03ad89
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd ruby_diff.jpg
+newmtl mat_rubyEyes_05c18fb1-2534-428e-916f-f2b0f0c9eba0
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd rubyEye_diff.jpg
+newmtl mat_eyeAO_f896a773-3889-788-9eb7-f82a5df12e36
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd eyeOcclusion_diff&eyeOcclusion_diff.png
+newmtl mat_crescentRose_184207c3-6908-43e0-aa5e-026d86efab8b
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd crescentRose_diff.jpg

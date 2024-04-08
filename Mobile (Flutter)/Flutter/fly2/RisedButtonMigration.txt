@@ -1,0 +1,26 @@
+Migrating from RisedButton toElevatedButton:
+https://stackoverflow.com/questions/66835173/how-can-i-change-the-background-color-of-elevated-button-in-flutter-from-functio
+https://flutteragency.com/raisedbutton-deprecation-migration-guide/
+
+The method 'showSnackBar' isn't defined for the type 'ScaffoldState'
+https://stackoverflow.com/questions/74908036/the-method-showsnackbar-isnt-defined-for-the-type-scaffoldstate
+
+Example
+//     new RaisedButton(onPressed: (){
+//       if(_formKey.currentState!.validate()) Scaffold.of(context).showSnackBar(SnackBar(content: Text('Форма заполнена!'+_body), backgroundColor: Colors.red,));
+//     }, child: Text('Отправить данные'), color: Colors.blue, textColor: Colors.white,),
+
+ElevatedButton(
+            child: Text('Button'),
+            onPressed: () {
+
+			if(_formKey.currentState!.validate()) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Форма заполнена!'+_body), backgroundColor: Colors.red,));
+
+		},
+            style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
+),

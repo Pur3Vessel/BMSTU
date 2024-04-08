@@ -1,0 +1,302 @@
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage{float}
+% Поля
+%--------------------------------------
+\usepackage{geometry}
+\geometry{a4paper,tmargin=2cm,bmargin=2cm,lmargin=3cm,rmargin=1cm}
+%--------------------------------------
+
+
+%Russian-specific packages
+%--------------------------------------
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, main=russian]{babel}
+%--------------------------------------
+
+\usepackage{textcomp}
+
+% Красная строка
+%--------------------------------------
+\usepackage{indentfirst}
+%--------------------------------------
+
+
+%Graphics
+%--------------------------------------
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{wrapfig}
+%--------------------------------------
+
+% Полуторный интервал
+%--------------------------------------
+\linespread{1.3}
+%--------------------------------------
+
+%Выравнивание и переносы
+%--------------------------------------
+% Избавляемся от переполнений
+\sloppy
+% Запрещаем разрыв страницы после первой строки абзаца
+\clubpenalty=10000
+% Запрещаем разрыв страницы после последней строки абзаца
+\widowpenalty=10000
+%--------------------------------------
+
+%Списки
+\usepackage{enumitem}
+
+%Подписи
+\usepackage{caption}
+
+%Гиперссылки
+\usepackage{hyperref}
+
+\hypersetup {
+	unicode=true
+}
+
+%Рисунки
+%--------------------------------------
+\DeclareCaptionLabelSeparator*{emdash}{~--- }
+\captionsetup[figure]{labelsep=emdash,font=onehalfspacing,position=bottom}
+%--------------------------------------
+
+\usepackage{tempora}
+
+%Листинги
+%--------------------------------------
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  %basicstyle=\footnotesize\AnkaCoder,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,        % sets if automatic breaks shoulbd only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=t,                    % sets the caption-position to bottom
+  inputencoding=utf8,
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\bf,       % keyword style
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  xleftmargin=25pt,
+  xrightmargin=25pt,
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  tabsize=2,                       % sets default tabsize to 8 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+%--------------------------------------
+
+%%% Математические пакеты %%%
+%--------------------------------------
+\usepackage{amsthm,amsfonts,amsmath,amssymb,amscd}  % Математические дополнения от AMS
+\usepackage{mathtools}                              % Добавляет окружение multlined
+\usepackage[perpage]{footmisc}
+%--------------------------------------
+
+%--------------------------------------
+%			НАЧАЛО ДОКУМЕНТА
+%--------------------------------------
+
+\begin{document}
+
+%--------------------------------------
+%			ТИТУЛЬНЫЙ ЛИСТ
+%--------------------------------------
+\begin{titlepage}
+\thispagestyle{empty}
+\newpage
+
+
+%Шапка титульного листа
+%--------------------------------------
+\vspace*{-60pt}
+\hspace{-65pt}
+\begin{minipage}{0.3\textwidth}
+\hspace*{-20pt}\centering
+\includegraphics[width=\textwidth]{emblem}
+\end{minipage}
+\begin{minipage}{0.67\textwidth}\small \textbf{
+\vspace*{-0.7ex}
+\hspace*{-6pt}\centerline{Министерство науки и высшего образования Российской Федерации}
+\vspace*{-0.7ex}
+\centerline{Федеральное государственное бюджетное образовательное учреждение }
+\vspace*{-0.7ex}
+\centerline{высшего образования}
+\vspace*{-0.7ex}
+\centerline{<<Московский государственный технический университет}
+\vspace*{-0.7ex}
+\centerline{имени Н.Э. Баумана}
+\vspace*{-0.7ex}
+\centerline{(национальный исследовательский университет)>>}
+\vspace*{-0.7ex}
+\centerline{(МГТУ им. Н.Э. Баумана)}}
+\end{minipage}
+%--------------------------------------
+
+%Полосы
+%--------------------------------------
+\vspace{-25pt}
+\hspace{-35pt}\rule{\textwidth}{2.3pt}
+
+\vspace*{-20.3pt}
+\hspace{-35pt}\rule{\textwidth}{0.4pt}
+%--------------------------------------
+
+\vspace{1.5ex}
+\hspace{-35pt} \noindent \small ФАКУЛЬТЕТ\hspace{80pt} <<Информатика и системы управления>>
+
+\vspace*{-16pt}
+\hspace{47pt}\rule{0.83\textwidth}{0.4pt}
+
+\vspace{0.5ex}
+\hspace{-35pt} \noindent \small КАФЕДРА\hspace{50pt} <<Теоретическая информатика и компьютерные технологии>>
+
+\vspace*{-16pt}
+\hspace{30pt}\rule{0.866\textwidth}{0.4pt}
+
+\vspace{11em}
+
+\begin{center}
+\Large {\bf Лабораторная работа № 5.2} \\
+\large {\bf по курсу <<Численные методы линейной алгебры>>} \\
+\large <<Сравнение скорости сходимости метода
+Якоби и Зейделя>>
+\end{center}\normalsize
+
+\vspace{8em}
+
+
+\begin{flushright}
+  {Студент группы ИУ9-71Б Баев Д.А \hspace*{15pt}\\
+  \vspace{2ex}
+  Преподаватель Посевин Д. П.\hspace*{15pt}}
+\end{flushright}
+
+\bigskip
+
+\vfill
+
+
+\begin{center}
+\textsl{Москва 2023}
+\end{center}
+\end{titlepage}
+%--------------------------------------
+%		КОНЕЦ ТИТУЛЬНОГО ЛИСТА
+%--------------------------------------
+
+\renewcommand{\ttdefault}{pcr}
+
+\setlength{\tabcolsep}{3pt}
+\newpage
+\setcounter{page}{2}
+
+\section{Задание}\label{Sect::task}
+
+1. Реализовать метод Якоби и Зейделя.
+
+2. Ввести критерий остановки итерационного процесс используя равномерную норму.
+
+3. Сравнить скорости сходимости методов в зависимости от размера матрицы.
+
+\newpage
+\section{Исходный код}
+
+Исходный код программы представлен в листингах~\ref{lst:code1}--~\ref{lst:code4}.
+
+\begin{figure}[H]
+\begin{lstlisting}[language={},caption={Реализация метода Зейделя},label={lst:code1}]
+def seidel(A, b, delta=1e-7):
+    n = len(A)
+    x_prev = np.zeros(shape=(n, ))
+    difference = np.array([1] * n)
+    x_k = None
+    k = 0
+    while norm(difference) > delta:
+        x_k = deepcopy(x_prev)
+        for i in range(n):
+            x_i = b[i]
+            x_i -= sum(A[i][j] * x_k[j] for j in range(i))
+            x_i -= sum(A[i][j] * x_prev[j] for j in range(i + 1, n))
+            x_i /= A[i][i]
+            x_k[i] = x_i
+        difference = x_k - x_prev
+        x_prev = deepcopy(x_k)
+        k += 1
+    return x_k, k
+\end{lstlisting}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[language={},caption={Вычисление норм вектора и матрицы},label={lst:code2}]
+def norm(vector):
+    return max(abs(vector))
+
+def norm_matrix(matrix):
+    return max([sum(abs(matrix[i][j]) for j in range(len(matrix[i])) if j != i) / abs(matrix[i][i]) for i in range(len(matrix))])
+\end{lstlisting}
+\end{figure}
+
+\begin{figure}[H]
+\begin{lstlisting}[language={},caption={Построение графика},label={lst:code3}]
+jacobi_y = []
+seidel_y = []
+n_arr = [i for i in range(3, 50)]
+for n in n_arr:
+    A = generate_matrix(n=n, diag=2)
+    x = np.random.uniform(-10, 10, size=(n, ))
+    b = mul_matrix_by_vector(matrix=A, vector=x)
+
+    jacobi_answer, jacobi_i = jacobi(A, b)
+    seidel_answer, seidel_i = seidel(A, b)
+    jacobi_y.append(jacobi_i)
+    seidel_y.append(seidel_i)
+
+plt.figure(figsize=(8, 4))
+plt.xlabel("dim")
+plt.ylabel("iteration")
+plt.plot(n_arr, jacobi_y, label='Jacobi')
+plt.plot(n_arr, seidel_y, label='Seidel', color='red')
+plt.legend()
+plt.show()
+\end{lstlisting}
+\end{figure}
+
+
+\section{Результаты}
+
+Результаты сравнения метода Якоби и метода Зейделя приведены на рисунках~\ref{fig:img1}-~\ref{fig:img3}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/res1.png}
+\caption{Результат решения СЛАУ методом Якоби для матрицы 3x3}
+\label{fig:img1}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/res2.png}
+\caption{Результат решения СЛАУ методом Зейделя для матрицы 3x3}
+\label{fig:img2}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/res3.png}
+\caption{График зависимости количества итераций метода Якоби и метода Зейделя от размерности матрицы}
+\label{fig:img3}
+\end{figure}
+
+
+\section{Выводы}
+В результате выполнения лабораторной работы был реализован и успешно протестирован метод Зейделя решения системы линейных алгебраических уравнений. Было проведено сравнение метода Зейделя и метода Якоби. В результате оказалось, что метод Зейделя сходится быстрее.
+\end{document}

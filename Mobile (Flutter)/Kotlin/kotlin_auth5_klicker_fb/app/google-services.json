@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "158076868046",
+    "firebase_url": "https://exam-dc2d3-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "exam-dc2d3",
+    "storage_bucket": "exam-dc2d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158076868046:android:95074ba0517471e083879f",
+        "android_client_info": {
+          "package_name": "com.example.kotlin_auth5_klicker_fb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoU7paUuUIvc0r2-2ISNRzSKd88BUHo_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

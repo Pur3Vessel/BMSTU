@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kotlin App</string>
+    <string name="hello_world_text">123</string>
+</resources>
